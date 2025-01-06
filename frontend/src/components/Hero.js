@@ -8,6 +8,8 @@ export function Hero() {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const [registerData, setRegisterData] = useState({
     name: "",
@@ -27,13 +29,12 @@ export function Hero() {
 
   const handleLogin = async () => {
     if (!formData.email || !formData.password) {
-      return alert("Email and password are required.");
+      return showAlertMessage("Email and password are required.");
     }
-  
-    setIsLoading(true); // Set loading state to true while waiting for the response
-  
+
+    setIsLoading(true);
+
     try {
-      // Make the login request with axios
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/auth/login`,
         formData,
@@ -43,121 +44,101 @@ export function Hero() {
           },
         }
       );
-  
+
       const { token, message } = response.data;
-  
-      // Save the token in localStorage for authentication persistence
       localStorage.setItem("authToken", token);
-  
-      // Optionally log the success message
-      console.log(message);
-  
-      // Trigger the login state and redirect to the dashboard
-      login(token); // `login` is assumed to update the app state with the token
+      login(token);
       navigate("/dashboard");
-  
-      // Close the login modal (optional UI state update)
+
       setShowLogin(false);
     } catch (err) {
-      // Enhanced error handling
-      alert(err.response?.data?.error || "Login failed. Please try again.");
-      console.error("Login failed:", err);
+      showAlertMessage(err.response?.data?.error || "Login failed. Please try again.");
     } finally {
-      setIsLoading(false); // Reset loading state after the request completes
+      setIsLoading(false);
     }
   };
-  
 
   const handleRegister = async () => {
-    // Validate input fields
     if (!registerData.name || !registerData.email || !registerData.password) {
-      return alert("All fields are required");
+      return showAlertMessage("All fields are required");
     }
-  
-    // Validate password length
+
     if (registerData.password.length < 6) {
-      return alert("Password must be at least 6 characters long");
+      return showAlertMessage("Password must be at least 6 characters long");
     }
-  
-    // Optional: Validate email format (basic regex)
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(registerData.email)) {
-      return alert("Please enter a valid email address");
+      return showAlertMessage("Please enter a valid email address");
     }
-  
-    setIsLoading(true); // Set loading state to true while waiting for the response
-  
+
+    setIsLoading(true);
+
     try {
-      // Make the API request with axios
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/auth/register`,
         registerData,
         {
           headers: {
             "Content-Type": "application/json",
-            // Include the Authorization header only if needed
-            ...(localStorage.getItem("authToken") && {
-              Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-            }),
           },
         }
       );
-  
-      // Handle successful registration
-      console.log("Registration successful:", response.data);
-      alert("Registration successful! Please log in.");
-      setShowRegister(false); // Close the register modal or navigate to login
+
+      showAlertMessage("Registration successful! Please log in.");
+      
+      // Clear the input fields after successful registration
+      setRegisterData({ name: "", email: "", password: "" });
+
+      // Open login modal automatically
+      setShowRegister(false);
+      setShowLogin(true);
+
     } catch (err) {
-      // Handle errors
-      console.error("Registration failed:", err.response?.data?.message || "An error occurred");
-      alert(err.response?.data?.message || "Registration failed");
+      showAlertMessage(err.response?.data?.message || "Registration failed");
     } finally {
-      setIsLoading(false); // Reset loading state after the request completes
+      setIsLoading(false);
     }
   };
-  
 
-  const handleLogout = () => {
-    // Perform logout functionality
-    logout(); // Assuming `logout` updates the state or performs any necessary cleanup
-
-    // Remove the auth token from localStorage
-    localStorage.removeItem("authToken");
-
-    // Redirect the user to the homepage
-    navigate("/");
+  const showAlertMessage = (message) => {
+    setAlertMessage(message);
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 3000);
   };
-  
+
+  const alertStyles = {
+    backgroundColor: "white",
+    color: "#e65100",
+    border: "2px solid #e65100",
+    padding: "10px 20px",
+    borderRadius: "5px",
+    fontSize: "16px",
+    fontWeight: "bold",
+    textAlign: "center",
+    position: "fixed",
+    top: "20px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    zIndex: "1000",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    opacity: showAlert ? 1 : 0,
+    transition: "opacity 0.3s ease",
+  };
 
   return (
     <div className="relative min-h-screen items-center justify-center flex flex-col text-white bg-cover bg-center bg-no-repeat bg-fixed bg-hero">
-  <iframe
-    className="absolute inset-0 w-full h-full object-cover"
-    src="https://www.youtube.com/embed/Mi-qP3I1fHU?autoplay=1&mute=1&loop=1&playlist=Mi-qP3I1fHU"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen
-  ></iframe>
+      <iframe
+        className="absolute inset-0 w-full h-full object-cover"
+        src="https://www.youtube.com/embed/Mi-qP3I1fHU?autoplay=1&mute=1&loop=1&playlist=Mi-qP3I1fHU"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+      ></iframe>
 
       <div className="absolute inset-0 bg-black/50" />
       <div className="fixed z-10 top-[100px] w-full overflow-hidden bg-orange-500 text-white bg-opacity-70 text-white">
         <div className="whitespace-nowrap animate-scroll">
-          <span className="inline-block px-4 font-bold text-lg">
-            Early Bird Offer: Flat 10% Discount (On bookings done 30 days in
-            advance)
-          </span>
-          <span className="inline-block px-4 font-bold text-lg">
-            Early Bird Offer: Flat 10% Discount (On bookings done 30 days in
-            advance)
-          </span>
-          <span className="inline-block px-4 font-bold text-lg">
-            Early Bird Offer: Flat 10% Discount (On bookings done 30 days in
-            advance)
-          </span>
-          <span className="inline-block px-4 font-bold text-lg">
-            Early Bird Offer: Flat 10% Discount (On bookings done 30 days in
-            advance)
-          </span>
           <span className="inline-block px-4 font-bold text-lg">
             Early Bird Offer: Flat 10% Discount (On bookings done 30 days in
             advance)
@@ -203,7 +184,7 @@ export function Hero() {
                 </div>
                 <button
                   className="bg-red-600 text-white px-6 py-2 rounded-full border-2 border-red-600 hover:bg-red-700 hover:border-red-700 transition-all duration-300"
-                  onClick={handleLogout}
+                  onClick={logout}
                 >
                   Logout
                 </button>
@@ -224,7 +205,7 @@ export function Hero() {
               placeholder="Email"
               value={formData.email}
               onChange={handleInputChange}
-              className="w-full mb-2 p-2 border rounded"
+              className="w-full mb-2 p-2 border rounded text-black"
             />
             <input
               type="password"
@@ -232,7 +213,7 @@ export function Hero() {
               placeholder="Password"
               value={formData.password}
               onChange={handleInputChange}
-              className="w-full mb-4 p-2 border rounded"
+              className="w-full mb-4 p-2 border rounded text-black"
             />
             <button
               className="bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700 transition w-full"
@@ -261,7 +242,7 @@ export function Hero() {
               placeholder="Name"
               value={registerData.name}
               onChange={handleRegisterChange}
-              className="w-full mb-2 p-2 border rounded"
+              className="w-full mb-2 p-2 border rounded text-black"
             />
             <input
               type="email"
@@ -269,7 +250,7 @@ export function Hero() {
               placeholder="Email"
               value={registerData.email}
               onChange={handleRegisterChange}
-              className="w-full mb-2 p-2 border rounded"
+              className="w-full mb-2 p-2 border rounded text-black"
             />
             <input
               type="password"
@@ -277,7 +258,7 @@ export function Hero() {
               placeholder="Password"
               value={registerData.password}
               onChange={handleRegisterChange}
-              className="w-full mb-4 p-2 border rounded"
+              className="w-full mb-4 p-2 border rounded text-black"
             />
             <button
               className="bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700 transition w-full"
@@ -294,6 +275,9 @@ export function Hero() {
           </div>
         </div>
       )}
+
+      {/* Alert */}
+      {showAlert && <div style={alertStyles}>{alertMessage}</div>}
     </div>
   );
 }

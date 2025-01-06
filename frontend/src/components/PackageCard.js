@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link as RouterLink } from "react-router-dom";
 
 const PackageCard = ({ pkg = {} }) => {
   const [activeSection, setActiveSection] = useState(null);
@@ -71,6 +72,63 @@ const PackageCard = ({ pkg = {} }) => {
             </ul>
           </div>
         )}
+
+{dayData.early_morning && (
+    <div className="mb-4">
+      <p className="font-medium text-blue-700 flex items-center mb-2">
+        <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+        Early Morning
+      </p>
+      <ul className="ml-4 space-y-2">
+        {Object.entries(dayData.early_morning).map(([key, value]) => (
+          <li key={key} className="text-sm text-gray-700">{value}</li>
+        ))}
+      </ul>
+    </div>
+  )}
+  {Array.isArray(dayData.morning_visits) && dayData.morning_visits.length > 0 && (
+    <div className="mb-4">
+      <p className="font-medium text-blue-700 flex items-center mb-2">
+        <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+        Morning Visits
+      </p>
+      <ul className="ml-4 space-y-2">
+        {dayData.morning_visits.map((item, index) => (
+          <li key={index} className="text-sm text-gray-700">
+            <span className="font-medium text-blue-600">{item?.activity}</span>: {item?.description}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+  {Array.isArray(dayData.midday) && dayData.midday.length > 0 && (
+    <div className="mb-4">
+      <p className="font-medium text-blue-700 flex items-center mb-2">
+        <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+        Midday
+      </p>
+      <ul className="ml-4 space-y-2">
+        {dayData.midday.map((item, index) => (
+          <li key={index} className="text-sm text-gray-700">
+            <span className="font-medium text-blue-600">{item?.activity}</span>: {item?.description}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+   {dayData.check_out_and_departure && (
+    <div className="mb-4">
+      <p className="font-medium text-blue-700 flex items-center mb-2">
+        <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+        Check-out and Departure
+      </p>
+      <ul className="ml-4 space-y-2">
+        <li className="text-sm text-gray-700">
+          {dayData.check_out_and_departure.drop_off}
+        </li>
+      </ul>
+    </div>
+  )}
       </div>
     );
   };
@@ -117,6 +175,12 @@ const PackageCard = ({ pkg = {} }) => {
                 {number}
               </a>
             ))}
+             <RouterLink
+              to="/booking"
+              className="button"
+              >
+              Book Now
+            </RouterLink>
           </div>
         </div>
       )}
@@ -211,31 +275,34 @@ const PackageCard = ({ pkg = {} }) => {
 
         {/* Terms & Conditions Section */}
         {Array.isArray(pkg._terms_conditions_) && pkg._terms_conditions_.length > 0 && (
-          <div className="border rounded-lg overflow-hidden">
-            <button
-              onClick={() => toggleSection('terms')}
-              className="w-full text-left py-4 px-6 bg-gradient-to-r from-blue-50 to-white font-medium flex justify-between items-center hover:bg-blue-100 transition-colors"
-            >
-              <span className="flex items-center">
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Terms & Conditions
-              </span>
-              <span className="text-blue-600 text-xl">{activeSection === 'terms' ? '−' : '+'}</span>
-            </button>
-            {activeSection === 'terms' && (
-              <div className="p-6">
-                {pkg._terms_conditions_.map((term, index) => (
-                  <div key={index} className="mb-4 last:mb-0">
-                    <h4 className="font-medium text-blue-800 mb-1">{term?.title}</h4>
-                    <p className="text-sm text-gray-700">{term?.policy}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+         <div className="border rounded-lg overflow-hidden">
+         <button
+           onClick={() => toggleSection('terms')}
+           className="w-full text-left py-4 px-6 bg-gradient-to-r from-blue-50 to-white font-medium flex justify-between items-center hover:bg-blue-100 transition-colors"
+         >
+           <span className="flex items-center">
+             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+             </svg>
+             Terms & Conditions
+           </span>
+           <span className="text-blue-600 text-xl">{activeSection === 'terms' ? '−' : '+'}</span>
+         </button>
+         {activeSection === 'terms' && (
+           <div className="p-6 min-h-[150px]"> {/* Adjust height here */}
+             {pkg._terms_conditions_.map((term, index) => (
+               <div key={index} className="mb-4 last:mb-0">
+                 <h4 className="font-medium text-blue-800 mb-1">{term?.title}</h4>
+                 <p className="text-sm text-gray-700">{term?.policy}</p>
+               </div>
+             ))}
+           </div>
+         )}
+       </div>
+       
         )}
+        
+     
       </div>
 
       {/* Book Now Button */}

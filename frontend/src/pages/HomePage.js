@@ -66,6 +66,81 @@ const tour_package = [
           accommodation: "Return to accommodation in a luxurious tent",
         },
       },
+      day_2: {
+        morning: {
+          holy_bath: "Another rejuvenating bath at the Sangam",
+          breakfast: "Delicious Indian breakfast to start the day",
+        },
+        afternoon: [
+          {
+            activity: "Explore Various Akhadas",
+            description:
+              "Discover the unique traditions and spiritual practices of the Akhadas. Interact with saints and observe meditation and rituals",
+          },
+          {
+            activity: "Nag Vasuki Mandir",
+            description: "Visit the ancient temple dedicated to the serpent king",
+          },
+          {
+            activity: "Arail Ghat & Shivalaya Park",
+            description:
+              "Relax amidst the serene natural beauty and scenic views of the Ganga",
+          },
+        ],
+        evening: [
+          {
+            activity: "Hot Air Balloon Ride",
+            description:
+              "Enjoy panoramic views of the Kumbh Mela from a hot air balloon (subject to weather conditions)",
+          },
+          {
+            activity: "Laser Show at Kali Ghat",
+            description:
+              "Experience an enchanting laser light show highlighting the spiritual and cultural heritage of the Kumbh",
+          },
+          {
+            activity: "Complimentary Boat Ride",
+            description:
+              "A serene evening boat ride along the Ganga to enjoy the peaceful ambiance",
+          },
+        ],
+        night: {
+          dinner: "Enjoy a delicious vegetarian dinner",
+          accommodation: "Relax with an overnight stay at the camp or hotel",
+        },
+      },
+      
+      day_3: {
+       early_morning: {
+          holy_bath: "A final dip in the Sangam to complete your spiritual journey",
+          breakfast: "Sumptuous Indian breakfast before departure",
+        },
+        morning_visits: [
+          {
+            activity: "Mankameshwar Mandir",
+            description: "Visit the sacred temple believed to fulfill devotees' wishes",
+          },
+          {
+            activity: "Boat Club",
+            description: "Enjoy a peaceful boat ride along the serene Ganga",
+          },
+          {
+            activity: "Anand Bhawan",
+            description:
+              "Visit the iconic museum, the former residence of the Nehru family, to learn about India's rich history and freedom struggle",
+          },
+        ],
+        midday: {
+          activity: "Nishad Raj Park",
+          description:
+            "Explore this park, which celebrates the legacy of Nishad Raj, a key figure in Ramayana lore",
+        },
+        check_out_and_departure: {
+          drop_off:
+            "Drop-off at Prayagraj Railway Station or Airport with a complimentary souvenir from Kumbh Travels",
+        },
+      },
+      
       // Add day_2 and day_3 itinerary details here...
     },
     _inclusions_: [
@@ -97,8 +172,9 @@ const tour_package = [
   },
   {
     id: "2",
+    image :"",
     title: "Mahakumbh 2025",
-    duration: "2 days and 1 night",
+    duration: "2 days and 1 nights",
     contact_numbers: ["9316802278", "6351168010"],
     itinerary: {
       day_1: {
@@ -107,7 +183,7 @@ const tour_package = [
           welcome: "Traditional greeting with refreshments",
           check_in:
             "Accommodation in a comfortable hotel or camp near the Kumbh Mela grounds",
-          breakfast: "Traditional Indian breakfast",
+          breakfast: "Delicious Indian breakfast",
         },
         afternoon: [
           {
@@ -121,13 +197,16 @@ const tour_package = [
           },
           {
             activity: "Akshayavat Corridor",
-            description:
-              "Explore the sacred indestructible banyan tree and learn its historical significance",
+            description: "Explore the sacred indestructible banyan tree",
           },
           {
             activity: "Patalpuri Mandir",
+            description: "Visit the ancient underground temple",
+          },
+          {
+            activity: "Saraswati Koop",
             description:
-              "Visit the ancient underground temple, believed to be a spiritual gateway to the netherworld",
+              "Explore the legendary well believed to be the origin of the Saraswati River",
           },
         ],
         evening: [
@@ -140,62 +219,48 @@ const tour_package = [
             description: "Witness the mesmerizing evening Ganga Aarti ceremony",
           },
           {
-            activity: "Mela Grounds Exploration",
+            activity: "Parade Grounds Exploration",
             description:
               "Enjoy cultural activities and local shopping opportunities",
           },
         ],
         night: {
           dinner: "Traditional vegetarian dinner with local delicacies",
-          return_accommodation: "Relax and prepare for the next day",
+          accommodation: "Return to accommodation in a luxurious tent",
         },
       },
-      day_2: {
-        _morning_activities_: [
-          {
-            activity: "Holy Bath",
-            description: "Another rejuvenating bath at the Sangam",
-          },
-          {
-            activity: "Breakfast",
-            description: "Delicious Indian breakfast to start the day",
-          },
+     day_2: {
+        early_morning: {
+          holy_bath: "Another rejuvenating bath at the Sangam.",
+          breakfast: "Delicious Indian breakfast to start the day."
+        },
+        morning_visits: [
           {
             activity: "Explore Various Akhadas",
-            description:
-              "Discover unique traditions and spiritual practices of the Akhadas",
+            description: "Discover the unique traditions and spiritual practices of the Akhadas. Interact with saints and observe meditation and rituals."
           },
           {
             activity: "Nag Vasuki Mandir",
-            description:
-              "Explore the revered temple dedicated to the serpent king",
-          },
-        ],
-        _afternoon_adventure_: [
-          {
-            activity: "Hot Air Balloon Ride",
-            description: "(subject to weather conditions)",
-          },
-        ],
-        _evening_activities_: [
-          {
-            activity: "Mankameshwar Mandir",
-            description:
-              "Visit the sacred temple believed to fulfill devotees' wishes",
+            description: "Explore the revered temple dedicated to the serpent king."
           },
           {
-            activity: "Boat Club",
-            description: "Enjoy a peaceful boat ride along the serene Ganga",
-          },
+            activity: "Shivalaya Park & Hot Air Balloon Ride",
+            description: "Relax in the serene Shivalaya Park. Enjoy a thrilling experience with panoramic views of the Kumbh Mela (subject to weather conditions and operational availability)."
+          }
         ],
-        _departure_: [
+        midday: [], // No midday activities provided in your description.
+        afternoon_adventure: [],
+        evening_visits: [
           {
-            activity: "Drop-off",
-            description:
-              "At Prayagraj Railway Station or Airport with a complimentary souvenir",
-          },
+            activity: "Mankameshwar Mandir & Boat Club",
+            description: "Visit the sacred Mankameshwar Mandir, known for fulfilling devotees' wishes. Enjoy a peaceful boat ride at the nearby boat club."
+          }
         ],
+        check_out_and_departure: {
+          drop_off: "Guests will be dropped at Prayagraj Railway Station or Airport with warm memories and a complimentary souvenir."
+        }
       },
+      
     },
     _inclusions_: [
       {

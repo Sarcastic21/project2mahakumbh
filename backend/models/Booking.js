@@ -1,7 +1,6 @@
-// models/User.js
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const booking2= new mongoose.Schema({
+const booking2 = new mongoose.Schema({
   name: { type: String, required: true },
   phoneNumber: { type: String, required: true },
   accommodationType: { type: String, required: true },
@@ -11,4 +10,5 @@ const booking2= new mongoose.Schema({
 });
 
 const Booking2 = mongoose.model('Booking2', booking2);
-module.exports = Booking2;
+
+export default Booking2;

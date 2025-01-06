@@ -27,31 +27,31 @@ export function Countdown() {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-orange-600 to-orange-500 text-white py-12">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">
-          Countdown to Mahakumbh 2025
-        </h2>
-        
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto text-center">
-          <div className="bg-white/10 rounded-lg p-4">
-            <span className="block text-4xl font-bold">{timeLeft.days}</span>
-            <span className="text-sm">Days</span>
-          </div>
-          <div className="bg-white/10 rounded-lg p-4">
-            <span className="block text-4xl font-bold">{timeLeft.hours}</span>
-            <span className="text-sm">Hours</span>
-          </div>
-          <div className="bg-white/10 rounded-lg p-4">
-            <span className="block text-4xl font-bold">{timeLeft.minutes}</span>
-            <span className="text-sm">Minutes</span>
-          </div>
-          <div className="bg-white/10 rounded-lg p-4">
-            <span className="block text-4xl font-bold">{timeLeft.seconds}</span>
-            <span className="text-sm">Seconds</span>
-          </div>
-        </div>
+    <div className="bg-gradient-to-r from-orange-600 to-orange-500 text-white py-8">
+  <div className="container mx-auto px-4">
+    <h2 className="text-2xl font-bold text-center mb-6">
+      Countdown to Mahakumbh 2025
+    </h2>
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-md mx-auto text-center">
+      <div className="bg-white/10 rounded-md p-3">
+        <span className="block text-3xl font-bold">{timeLeft.days}</span>
+        <span className="text-xs">Days</span>
+      </div>
+      <div className="bg-white/10 rounded-md p-3">
+        <span className="block text-3xl font-bold">{timeLeft.hours}</span>
+        <span className="text-xs">Hours</span>
+      </div>
+      <div className="bg-white/10 rounded-md p-3">
+        <span className="block text-3xl font-bold">{timeLeft.minutes}</span>
+        <span className="text-xs">Minutes</span>
+      </div>
+      <div className="bg-white/10 rounded-md p-3">
+        <span className="block text-3xl font-bold">{timeLeft.seconds}</span>
+        <span className="text-xs">Seconds</span>
       </div>
     </div>
+  </div>
+</div>
+
   );
 }

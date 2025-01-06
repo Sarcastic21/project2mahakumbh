@@ -1,6 +1,6 @@
-    const express = require('express');
-    const Booking = require('../models/Booking_');
-    const { verifyToken } = require('../middlewares/authMiddleware'); // Import your verifyToken middleware
+import express from 'express';
+import Booking from '../models/Booking_.js';  // Assuming the file extension is .js
+import { verifyToken } from '../middlewares/authMiddleware.js'; // Import your verifyToken middleware
 
     const router = express.Router();
 
@@ -20,4 +20,4 @@
     }
     });
 
-    module.exports = router;
+export default router;

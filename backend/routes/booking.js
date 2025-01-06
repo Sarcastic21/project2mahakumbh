@@ -1,6 +1,6 @@
-const express = require('express');
-const Booking = require('../models/Booking');
-const { verifyToken } = require('../middlewares/authMiddleware');
+import express from 'express';
+import Booking from '../models/Booking.js';  // Assuming the file extension is .js
+import { verifyToken } from '../middlewares/authMiddleware.js';  // Assuming the file extension is .js
 
 const router = express.Router();
 
@@ -41,4 +41,4 @@ router.get('/get-booking', verifyToken, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

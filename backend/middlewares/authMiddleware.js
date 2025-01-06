@@ -1,4 +1,5 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
+
 const JWT_SECRET = 'b017efd34a7ee993bdea34db845ce9a0e0d6e0ad4c0af51d6bff56fc3ffd892e'; // Replace with your secret key
 
 const verifyToken = (req, res, next) => {
@@ -21,4 +22,4 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-module.exports = { verifyToken };
+export { verifyToken };

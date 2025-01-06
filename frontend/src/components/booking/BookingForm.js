@@ -35,7 +35,7 @@ export function BookingForm() {
     }
   
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/bookings`, {
+      const response = await fetch('http://localhost:5000/api/bookings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,12 +54,31 @@ export function BookingForm() {
       console.error('Error submitting form data:', error); // Log the error
     }
   };
-  
+
+  // Validate form data based on current step
+  const isFormValid = () => {
+    if (step === 1) {
+      // Validate PersonalDetails (name, phone number)
+      return formData.name && formData.phoneNumber;
+    }
+    if (step === 2) {
+      // Validate AccommodationDetails (accommodation type)
+      return formData.accommodationType;
+    }
+    if (step === 3) {
+      // No validation for DateSelection (skip validation)
+      return true;
+    }
+    if (step === 4) {
+      // Validate GuestDetails (adults)
+      return formData.adults;
+    }
+    return true;
+  };
+
   if (isSubmitted) {
     return <BookingSummary formData={formData} selectedPackage={selectedPackage} />;
   }
-  
-  
 
   return (
     <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
@@ -101,7 +120,8 @@ export function BookingForm() {
             <button
               type="button"
               onClick={() => setStep(s => s + 1)}
-              className="ml-auto px-6 py-2 bg-orange-600 text-white rounded-full hover:bg-orange-700"
+              disabled={!isFormValid()}
+              className="ml-auto px-6 py-2 bg-orange-600 text-white rounded-full hover:bg-orange-700 disabled:bg-gray-400"
             >
               Next
             </button>

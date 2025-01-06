@@ -11,3 +11,37 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+.button{
+  background-color: #f97316; /* Tailwind's orange-600 */
+  color: #ffffff; /* White text */
+  padding: 0.5rem 1.5rem; /* Equivalent to px-6 and py-2 */
+  border-radius: 9999px; /* Fully rounded corners */
+  transition: all 0.2s ease-in-out;
+
+ /* Fixed positioning relative to the viewport */
+  
+}
+.alert-message {
+  background-color: white;
+  color: #e65100; /* Orange color for text */
+  border: 2px solid #e65100; /* Orange border */
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease;
+}
+
+.alert-message.fade-out {
+  opacity: 0;
+}

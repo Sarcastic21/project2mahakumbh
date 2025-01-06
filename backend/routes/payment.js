@@ -1,5 +1,5 @@
-const express = require('express');
-const axios = require('axios');
+import express from 'express';
+import axios from 'axios';  // Import axios using ES module syntax
 const router = express.Router();
 
 // PayPal API credentials
@@ -120,4 +120,4 @@ router.post('/payment/createFinalPayment', async (req, res) => {
 });
 
 
-module.exports = router;
+export default router;

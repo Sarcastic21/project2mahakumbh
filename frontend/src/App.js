@@ -10,6 +10,7 @@ import { HomePage } from "./pages/HomePage";
 import { EventsPage } from "./pages/EventsPage";
 import { AboutPage } from "./pages/AboutPage";
 import { ContactPage } from "./pages/ContactPage";
+
 import { BookingPage } from "./pages/BookingPage";
 import Dashboard from "./pages/Dashboard";
 import { useAuth } from "./context/AuthContext"; // Custom hook for authentication
@@ -70,6 +71,7 @@ function AppContent() {
         />
 
         {/* Public Routes */}
+
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
       </Routes>

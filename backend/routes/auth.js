@@ -1,14 +1,12 @@
-const express = require("express");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';  // Adjusted the import path to use .js extension
 const router = express.Router();
-const JWT_SECRET =
-  process.env.JWT_SECRET ||
+const JWT_SECRET = process.env.JWT_SECRET ||
   "b017efd34a7ee993bdea34db845ce9a0e0d6e0ad4c0af51d6bff56fc3ffd892e";
 
-// Register
-
+// Register route
 router.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -56,7 +54,9 @@ router.post("/register", async (req, res) => {
     console.error("Error during registration:", error);
     res.status(500).json({ message: "Server error" });
   }
-})
+});
+
+// Login route
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -87,4 +87,4 @@ router.post("/login", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;  // Changed to ES module export
