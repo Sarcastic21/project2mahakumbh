@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js'; // Adjusted the path to match the ES module format
 import bookingRoutes from './routes/booking.js'; // Adjusted the path
 import paymentRoutes from './routes/payment.js'; // Adjusted the path
-import bookingRoutes from './routes/get-booking.js'; // Adjusted the path
 
 // Load environment variables
 dotenv.config();
