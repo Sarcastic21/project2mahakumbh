@@ -15,7 +15,7 @@ const app = express();
 // CORS options
 const allowedOrigins = [
   'https://mahakumbh30.netlify.app',
-  'http://localhost:3000',
+  'https://pandey6backend-zkab.vercel.app',
 ];
 
 app.use(
