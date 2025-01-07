@@ -56,7 +56,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// Login route
+// Login Route
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -73,18 +73,17 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // Generate JWT token without 'role' in the payload
+    // Generate JWT token with user id in payload
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
 
-    // Return the token, user email, and a success message
+    // Return token and user info
     res.status(200).json({
       token,
-      user: { email: user.email, id: user._id }, // You can include more user details here as needed
-      message: "Login successful"
+      user: { email: user.email, id: user._id },
+      message: "Login successful",
     });
   } catch (err) {
     res.status(500).json({ error: "Login failed", details: err.message });
   }
 });
-
 export default router;  // Changed to ES module export
