@@ -28,14 +28,15 @@ export function BookingForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+  
+    // Check if the token exists
     if (!token) {
       console.error('No token found. Please log in.');
       return;
     }
   
     try {
-      const response = await fetch('http://localhost:5000/api/bookings', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/bookings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,8 +55,8 @@ export function BookingForm() {
       console.error('Error submitting form data:', error); // Log the error
     }
   };
-
-  // Validate form data based on current step
+  
+  // Validate form data based on the current step
   const isFormValid = () => {
     if (step === 1) {
       // Validate PersonalDetails (name, phone number)
@@ -75,10 +76,11 @@ export function BookingForm() {
     }
     return true;
   };
-
+  
   if (isSubmitted) {
     return <BookingSummary formData={formData} selectedPackage={selectedPackage} />;
-  }
+  };
+  
 
   return (
     <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
