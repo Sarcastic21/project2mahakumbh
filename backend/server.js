@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js'; // Adjusted the path to match the ES module format
 import bookingRoutes from './routes/booking.js'; // Adjusted the path
 import paymentRoutes from './routes/payment.js'; // Adjusted the path
+import bookingRoutes from './routes/get-booking.js'; // Adjusted the path
 
 // Load environment variables
 dotenv.config();
@@ -15,7 +16,7 @@ const app = express();
 // CORS options
 const allowedOrigins = [
   'https://mahakumbh30.netlify.app',
-  'https://pandey6backend-zkab.vercel.app',
+  'http://localhost:3000',
 ];
 
 app.use(
@@ -37,6 +38,7 @@ app.use(
 app.use(express.json());
 
 // Routes
+
 app.use('/api/auth', authRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/payment', paymentRoutes);
