@@ -5,7 +5,7 @@ import { verifyToken } from '../middlewares/authMiddleware.js';  // Assuming the
 const router = express.Router();
 
 // Create a new booking
-router.post('/',verifyToken, async (req, res) => {
+router.post('/', verifyToken, async (req, res) => {
   try {
     const { name, phoneNumber, accommodationType, checkIn, adults, children, bookingPackage, price } = req.body;
 
