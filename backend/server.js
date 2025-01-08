@@ -15,6 +15,7 @@ const app = express();
 // CORS options
 const allowedOrigins = [
   'https://mahakumbh30.netlify.app',
+  'https://finalkumbh.onrender.com',
 ];
 
 app.use(
